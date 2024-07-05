@@ -20,7 +20,7 @@ const getIngredientById = async (req, res) => {
     if (!ingredient) {
       return res.status(404).json({ error: "Ingredient not found" });
     }
-    return res.status(200).json(product);
+    return res.status(200).json(ingredient);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -38,3 +38,5 @@ const getIngredientsByName = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+export { getAllIngredients, getIngredientById, getIngredientsByName };
