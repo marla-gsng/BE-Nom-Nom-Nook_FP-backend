@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Ingredients from "../models/ingredientsModel";
+import Ingredients from "../models/ingredientsModel.js";
 
 const getAllIngredients = async (req, res) => {
   try {
@@ -39,4 +39,20 @@ const getIngredientsByName = async (req, res) => {
   }
 };
 
-export { getAllIngredients, getIngredientById, getIngredientsByName };
+const createIngredient = async (req, res) => {
+  const { name, quantity, unit } = req.body;
+
+  try {
+    const newIngredient = await Ingredients.create({ name, quantity, unit });
+    return res.status(201).json(newIngredient);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+export {
+  getAllIngredients,
+  getIngredientById,
+  getIngredientsByName,
+  createIngredient,
+};

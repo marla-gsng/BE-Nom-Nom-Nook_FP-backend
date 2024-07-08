@@ -3,7 +3,8 @@ import {
   getAllIngredients,
   getIngredientById,
   getIngredientsByName,
-} from "../controller/ingredientsController";
+  createIngredient,
+} from "../controller/ingredientsController.js";
 
 const ingredientRouter = Router();
 
@@ -12,5 +13,7 @@ ingredientRouter.get("/ingredients", getAllIngredients);
 ingredientRouter.get("/ingredients/:ingredientID", getIngredientById);
 
 ingredientRouter.get("/ingredient", getIngredientsByName);
+
+ingredientRouter.post("/ingredient", createIngredient);
 
 export default ingredientRouter;

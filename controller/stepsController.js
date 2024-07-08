@@ -26,4 +26,15 @@ const getSteps = async (req, res) => {
   }
 };
 
-export { getStepsById, getSteps };
+const createStep = async (req, res) => {
+  const { step, description, duration } = req.body;
+  try {
+    const newStep = await Steps.create({ step, description, duration });
+
+    return res.status(201).json(newStep);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { getStepsById, getSteps, createStep };
