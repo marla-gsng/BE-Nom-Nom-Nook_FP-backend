@@ -3,17 +3,22 @@ import mongoose from "mongoose";
 const ingredientSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true],
+    required: false,
   },
 
   quantity: {
     type: Number,
-    required: [true],
+    required: false,
   },
 
   unit: {
     type: String,
-    required: [true],
+    required: false,
+  },
+
+  notes: {
+    type: String,
+    required: false,
   },
 });
 

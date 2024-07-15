@@ -19,7 +19,7 @@ const getStepsById = async (req, res) => {
 
 const getSteps = async (req, res) => {
   try {
-    const steps = await Steps.find();
+    const steps = await Steps.find().populate("steps");
     res.status(200).json(steps);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -27,9 +27,9 @@ const getSteps = async (req, res) => {
 };
 
 const createStep = async (req, res) => {
-  const { step, description, duration } = req.body;
+  const { step } = req.body;
   try {
-    const newStep = await Steps.create({ step, description, duration });
+    const newStep = await Steps.create({ step });
 
     return res.status(201).json(newStep);
   } catch (error) {

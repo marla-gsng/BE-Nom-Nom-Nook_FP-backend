@@ -20,7 +20,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  res.send("Hello from API");
+  try {
+    const data = req.body;
+    res.send(data);
+  } catch (error) {
+    res.status(400).send(error);
+  }
 });
 
 app.post("/user", (req, res) => {

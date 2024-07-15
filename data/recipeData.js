@@ -1,5 +1,6 @@
 const recipeData = [
   {
+    id: 1,
     title: "Spaghetti Aglio e Olio",
     ingredients: [
       { name: "Spaghetti", quantity: 400, unit: "g" },
@@ -35,6 +36,7 @@ const recipeData = [
     tags: ["vegetarian", "quick", "easy"],
   },
   {
+    id: 2,
     title: "Classic Pancakes",
     ingredients: [
       { name: "All-purpose flour", quantity: 190, unit: "g" },
@@ -69,6 +71,7 @@ const recipeData = [
     tags: ["breakfast", "easy", "classic"],
   },
   {
+    id: 3,
     title: "Caprese Salad",
     ingredients: [
       { name: "Tomatoes", quantity: 4, unit: "sliced" },
@@ -102,6 +105,7 @@ const recipeData = [
     tags: ["vegetarian", "Italian", "fresh"],
   },
   {
+    id: 4,
     title: "Chicken Stir-Fry",
     ingredients: [
       {
@@ -151,6 +155,7 @@ const recipeData = [
     tags: ["quick", "Asian", "healthy"],
   },
   {
+    id: 5,
     title: "Chocolate Chip Cookies",
     ingredients: [
       { name: "Butter", quantity: 225, unit: "g", notes: "softened" },
