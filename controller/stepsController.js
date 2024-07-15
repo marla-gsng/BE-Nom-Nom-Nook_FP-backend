@@ -19,7 +19,7 @@ const getStepsById = async (req, res) => {
 
 const getSteps = async (req, res) => {
   try {
-    const steps = await Steps.find().populate("steps");
+    const steps = await Steps.find();
     res.status(200).json(steps);
   } catch (error) {
     res.status(404).json({ message: error.message });
