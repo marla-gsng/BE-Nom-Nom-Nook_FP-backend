@@ -40,10 +40,15 @@ const getIngredientsByName = async (req, res) => {
 };
 
 const createIngredient = async (req, res) => {
-  const { name, quantity, unit } = req.body;
+  const { name, quantity, unit, notes } = req.body;
 
   try {
-    const newIngredient = await Ingredients.create({ name, quantity, unit });
+    const newIngredient = await Ingredients.create({
+      name,
+      quantity,
+      unit,
+      notes,
+    });
     return res.status(201).json(newIngredient);
   } catch (error) {
     res.status(400).json({ message: error.message });

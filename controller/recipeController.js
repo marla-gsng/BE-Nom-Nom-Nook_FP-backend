@@ -24,6 +24,25 @@ const getRecipeById = async (req, res) => {
   }
 };
 
+const getRecipeByTitle = async (req, res) => {
+  const { title } = req.query;
+  try {
+    const recipe = await Recipe.findOne({ title: title }).populate(
+      "ingredients instructions"
+    );
+    return res.status(200).json(recipe);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// const { title } = req.params;
+// // const searchByTitle = await Movie.findOne({ title: title })
+// const searchByTitle = await Movie.findOne({
+//   title: { $regex: new RegExp(title, "i") },
+// }); // case insensitive
+// return res.json(searchByTitle);
+
 const createRecipe = async (req, res) => {
   const recipe = req.body;
   const newRecipe = new Recipe(recipe);
@@ -35,4 +54,4 @@ const createRecipe = async (req, res) => {
   }
 };
 
-export { getAllRecipes, createRecipe, getRecipeById };
+export { getAllRecipes, createRecipe, getRecipeById, getRecipeByTitle };
