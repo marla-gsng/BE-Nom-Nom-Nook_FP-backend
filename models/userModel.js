@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     required: true,
   },
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 
   saved_recipes: {
     type: Array,
-    default: [],
+    // default: [],
   },
 });
 

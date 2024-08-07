@@ -1,6 +1,24 @@
 import mongoose from "mongoose";
 import Ingredients from "../models/ingredientsModel.js";
 
+const getIngredients = async (req, res) => {
+  try {
+    const ingredients = await Ingredients.find();
+    if (ingredients.length < 1) {
+      return res.status(404).json({ error: "No ingredients found" });
+    }
+    const ingredientsCount = await Ingredients.countDocuments();
+    res.set(
+      "Content-Range",
+      `ingredients 0-${ingredients.length}/${ingredientsCount}`
+    );
+    return res.status(200).json(ingredients);
+  } catch (err) {
+    console.error("Internal server error 🔴", err);
+    res.status(500).json({ error: `${err.message} 🔴` });
+  }
+};
+
 const getAllIngredients = async (req, res) => {
   try {
     const ingredients = await Ingredients.find();
@@ -56,6 +74,7 @@ const createIngredient = async (req, res) => {
 };
 
 export {
+  getIngredients,
   getAllIngredients,
   getIngredientById,
   getIngredientsByName,

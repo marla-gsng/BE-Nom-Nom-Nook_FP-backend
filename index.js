@@ -5,15 +5,22 @@ import mongoose from "mongoose";
 import recipeRouter from "./routes/recipeRoute.js";
 import ingredientRouter from "./routes/ingredientsRoute.js";
 import stepsRouter from "./routes/stepsRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 const MONGO_URI = process.env.MONGO_URI;
 
-const app = express();
+export const app = express();
+
+const corsOptions = {
+  exposedHeaders: ["Content-Range"],
+};
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
-app.use("/api", recipeRouter, ingredientRouter, stepsRouter);
+app.use("/api", recipeRouter, ingredientRouter, stepsRouter, userRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -28,7 +35,7 @@ app.get("/api", (req, res) => {
   }
 });
 
-app.post("/user", (req, res) => {
+app.post("/api/users", (req, res) => {
   res.send(req.body);
 });
 

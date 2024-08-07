@@ -3,6 +3,21 @@
 import mongoose from "mongoose";
 import Recipe from "../models/recipeModel.js";
 
+const getRecipes = async (req, res) => {
+  try {
+    const recipes = await Recipe.find();
+    if (categories.length < 1) {
+      return res.status(404).json({ error: "No recipe found" });
+    }
+    const recipeCount = await Recipe.countDocuments();
+    res.set("Content-Range", `recipes 0-${recipes.length}/${recipeCount}`);
+    return res.status(200).json(categories);
+  } catch (err) {
+    console.error("Internal server error 🔴", err);
+    res.status(500).json({ error: `${err.message} 🔴` });
+  }
+};
+
 const getAllRecipes = async (req, res) => {
   try {
     const recipes = await Recipe.find().populate("ingredients instructions");
@@ -25,7 +40,7 @@ const getRecipeById = async (req, res) => {
 };
 
 const getRecipeByTitle = async (req, res) => {
-  const { title } = req.query;
+  const { title } = req.params;
   try {
     const recipe = await Recipe.findOne({ title: title }).populate(
       "ingredients instructions"
@@ -54,4 +69,10 @@ const createRecipe = async (req, res) => {
   }
 };
 
-export { getAllRecipes, createRecipe, getRecipeById, getRecipeByTitle };
+export {
+  getRecipes,
+  getAllRecipes,
+  createRecipe,
+  getRecipeById,
+  getRecipeByTitle,
+};
