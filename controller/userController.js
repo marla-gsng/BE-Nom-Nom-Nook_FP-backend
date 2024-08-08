@@ -12,14 +12,14 @@ const getUsers = async (req, res) => {
   }
 };
 
-const getAllUsers = async (req, res) => {
-  try {
-    const users = await User.find();
-    return res.status(200).json(users);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+// const getAllUsers = async (req, res) => {
+//   try {
+//     const users = await User.find();
+//     return res.status(200).json(users);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 const getUserById = async (req, res) => {
   const { userId } = req.params;
@@ -34,4 +34,4 @@ const getUserById = async (req, res) => {
   }
 };
 
-export { getUsers, getAllUsers, getUserById };
+export { getUsers, getUserById };

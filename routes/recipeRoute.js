@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
-  getAllRecipes,
+  getRecipes,
+  // getAllRecipes,
   createRecipe,
   getRecipeById,
   getRecipeByTitle,
@@ -9,7 +10,9 @@ import Recipe from "../models/recipeModel.js";
 
 const recipeRouter = Router();
 
-recipeRouter.get("/recipes", getAllRecipes);
+recipeRouter.get("/recipes", getRecipes);
+
+// recipeRouter.get("/recipes", getAllRecipes);
 
 recipeRouter.get("/recipe/:id", getRecipeById);
 

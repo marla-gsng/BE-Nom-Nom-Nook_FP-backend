@@ -3,11 +3,11 @@ import {
   registerUser,
   loginUser,
   logoutUser,
-} from "../controllers/authController.js";
+} from "../controller/authController.js";
 
 const authRouter = Router();
 
-authRouter.post("/users", registerUser); // Register a new user
+authRouter.post("/newuser", registerUser); // Register a new user
 
 authRouter.post("/login", loginUser);
 

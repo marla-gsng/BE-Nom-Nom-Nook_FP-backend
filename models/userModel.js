@@ -16,6 +16,16 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 
+  // isAdmin: {
+  //   type: Boolean,
+  //   default: false,
+  // },
+
+  // token: {
+  //   type: String,
+  //   required: false,
+  // },
+
   saved_recipes: {
     type: Array,
     // default: [],

@@ -1,8 +1,8 @@
 import { Router } from "express";
 
 import {
-  getStepsById,
   getSteps,
+  getStepsById,
   createStep,
 } from "../controller/stepsController.js";
 

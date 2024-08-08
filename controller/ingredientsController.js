@@ -19,14 +19,14 @@ const getIngredients = async (req, res) => {
   }
 };
 
-const getAllIngredients = async (req, res) => {
-  try {
-    const ingredients = await Ingredients.find();
-    res.status(200).json(ingredients);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+// const getAllIngredients = async (req, res) => {
+//   try {
+//     const ingredients = await Ingredients.find();
+//     res.status(200).json(ingredients);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 const getIngredientById = async (req, res) => {
   const { ingredientID } = req.params;
@@ -75,7 +75,7 @@ const createIngredient = async (req, res) => {
 
 export {
   getIngredients,
-  getAllIngredients,
+  // getAllIngredients,
   getIngredientById,
   getIngredientsByName,
   createIngredient,

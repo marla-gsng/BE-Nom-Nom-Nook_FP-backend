@@ -3,27 +3,28 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const registerUser = async (req, res) => {
-  // We are destructuring the email and the password from the req.body
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
   try {
+    if (!username || !email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
     // We check in our database if we have an email that match the req.body.email, the one provided by the user
     const emailVerification = await User.findOne({ email });
     if (emailVerification) {
       return res.status(404).json({ error: "Email already taken" });
     }
 
-    // Series of characters, made to add complexity to the password
     const salt = await bcrypt.genSaltSync(10);
-    // We hash the password provided by the user and we add to that the salt
+
     const hashedPassword = await bcrypt.hashSync(password, salt);
 
-    // We create our user, with the email and the password that has been hashed
     const user = await new User({
+      username,
       email,
       password: hashedPassword,
     });
     await user.save();
-    return res.status(201).json({ message: "User registred successfully" });
+    return res.status(201).json({ message: "User registered successfully" });
   } catch (err) {
     console.error("Internal server error 🔴", err);
     res.status(500).json({ error: `${err.message} 🔴` });
@@ -31,7 +32,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { username, email, password } = req.body;
   try {
     const user = await User.findOne({ email });
     if (!user) {

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
-  getAllIngredients,
+  getIngredients,
+  // getAllIngredients,
   getIngredientById,
   getIngredientsByName,
   createIngredient,
@@ -8,7 +9,9 @@ import {
 
 const ingredientRouter = Router();
 
-ingredientRouter.get("/ingredients", getAllIngredients);
+ingredientRouter.get("/ingredients", getIngredients);
+
+// ingredientRouter.get("/ingredients", getAllIngredients);
 
 ingredientRouter.get("/ingredients/:ingredientID", getIngredientById);
 

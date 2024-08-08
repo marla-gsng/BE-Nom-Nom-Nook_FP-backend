@@ -5,27 +5,27 @@ import Recipe from "../models/recipeModel.js";
 
 const getRecipes = async (req, res) => {
   try {
-    const recipes = await Recipe.find();
-    if (categories.length < 1) {
+    const recipes = await Recipe.find().populate("ingredients instructions");
+    if (recipes.length < 1) {
       return res.status(404).json({ error: "No recipe found" });
     }
     const recipeCount = await Recipe.countDocuments();
     res.set("Content-Range", `recipes 0-${recipes.length}/${recipeCount}`);
-    return res.status(200).json(categories);
+    return res.status(200).json(recipes);
   } catch (err) {
     console.error("Internal server error 🔴", err);
     res.status(500).json({ error: `${err.message} 🔴` });
   }
 };
 
-const getAllRecipes = async (req, res) => {
-  try {
-    const recipes = await Recipe.find().populate("ingredients instructions");
-    return res.status(200).json(recipes);
-  } catch (error) {
-    res.status(404).json({ message: error.message });
-  }
-};
+// const getAllRecipes = async (req, res) => {
+//   try {
+//     const recipes = await Recipe.find().populate("ingredients instructions");
+//     return res.status(200).json(recipes);
+//   } catch (error) {
+//     res.status(404).json({ message: error.message });
+//   }
+// };
 
 const getRecipeById = async (req, res) => {
   const { id } = req.params;
@@ -71,7 +71,7 @@ const createRecipe = async (req, res) => {
 
 export {
   getRecipes,
-  getAllRecipes,
+  // getAllRecipes,
   createRecipe,
   getRecipeById,
   getRecipeByTitle,
