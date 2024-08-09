@@ -9,8 +9,8 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: "All fields are required" });
     }
     // We check in our database if we have an email that match the req.body.email, the one provided by the user
-    const emailVerification = await User.findOne({ email });
-    if (emailVerification) {
+    const verification = await User.findOne({ email, username });
+    if (verification) {
       return res.status(404).json({ error: "Email already taken" });
     }
 
@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { username, email, password } = req.body;
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email, username });
     if (!user) {
       return res.status(400).json({ error: "Invalid email or password" });
     }
