@@ -17,6 +17,6 @@ ingredientRouter.get("/ingredients/:ingredientID", getIngredientById);
 
 ingredientRouter.get("/ingredient", getIngredientsByName);
 
-ingredientRouter.post("/ingredient", createIngredient);
+ingredientRouter.post("/ingredients", createIngredient);
 
 export default ingredientRouter;
