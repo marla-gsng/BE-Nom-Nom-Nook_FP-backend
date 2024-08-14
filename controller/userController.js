@@ -34,4 +34,20 @@ const getUserById = async (req, res) => {
   }
 };
 
-export { getUsers, getUserById };
+const getUserByToken = async (req, res) => {
+  const { token } = req.body;
+  try {
+    const userByToken = await User.findOne({ token }).select(
+      "-password -isAdmin"
+    );
+    if (!userByToken) {
+      return res.status(400).json({ error: "No user found" });
+    }
+    return res.status(200).json(userByToken);
+  } catch (err) {
+    console.error("Internal server error 🔴", err);
+    res.status(500).json({ error: `${err.message} 🔴` });
+  }
+};
+
+export { getUsers, getUserById, getUserByToken };

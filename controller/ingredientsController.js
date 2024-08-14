@@ -34,7 +34,7 @@ const getIngredientById = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(ingredientID)) {
       return res.status(400).json({ error: "Invalid ingredient ID format" });
     }
-    const ingredient = await ProductModel.findById(ingredientID);
+    const ingredient = await Ingredients.findById(ingredientID);
     if (!ingredient) {
       return res.status(404).json({ error: "Ingredient not found" });
     }

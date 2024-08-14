@@ -47,6 +47,10 @@ app.post("/api/users", (req, res) => {
   res.send(req.body);
 });
 
+// app.post("/api/recipes/:id", (req, res) => {
+//   res.send(req.body);
+// });
+
 // IMPORTANT !!
 app.listen(process.env.PORT, () =>
   console.log(`Server is running on port ${process.env.PORT}`)

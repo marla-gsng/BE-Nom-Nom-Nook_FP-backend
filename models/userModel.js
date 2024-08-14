@@ -26,10 +26,9 @@ const userSchema = new mongoose.Schema({
   //   required: false,
   // },
 
-  saved_recipes: {
-    type: Array,
-    // default: [],
-  },
+  // saved_recipes: {
+  //   type: Array,
+  // default: [],
 });
 
 const User = mongoose.model("User", userSchema);

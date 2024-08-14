@@ -22,7 +22,7 @@ const getStepsById = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(stepsID)) {
       return res.status(400).json({ error: "Invalid steps ID format" });
     }
-    const step = await ProductModel.findById(stepsID);
+    const step = await Steps.findById(stepsID);
     if (!step) {
       return res.status(404).json({ error: "Step not found" });
     }

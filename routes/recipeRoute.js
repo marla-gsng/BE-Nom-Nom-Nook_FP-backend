@@ -14,7 +14,7 @@ recipeRouter.get("/recipes", getRecipes);
 
 // recipeRouter.get("/recipes", getAllRecipes);
 
-recipeRouter.get("/recipe/:id", getRecipeById);
+recipeRouter.get("/recipes/:id", getRecipeById);
 
 recipeRouter.get("/recipe/title/:title", async (req, res) => {
   const { title } = req.params;

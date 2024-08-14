@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getUsers, getUserById } from "../controller/userController.js";
+import {
+  getUsers,
+  getUserById,
+  getUserByToken,
+} from "../controller/userController.js";
 
 const userRouter = Router();
 
@@ -7,6 +11,8 @@ userRouter.get("/users", getUsers);
 
 // userRouter.get("/users", getAllUsers);
 
-userRouter.get("/user/:userId", getUserById);
+userRouter.get("/users/:userId", getUserById);
+
+userRouter.get("/users/token", getUserByToken);
 
 export default userRouter;
