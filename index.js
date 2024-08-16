@@ -34,20 +34,16 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/api", (req, res) => {
-  try {
-    const data = req.body;
-    res.send(data);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
+// app.get("/api", (req, res) => {
+//   try {
+//     const data = req.body;
+//     res.send(data);
+//   } catch (error) {
+//     res.status(400).send(error);
+//   }
+// });
 
-app.post("/api/users", (req, res) => {
-  res.send(req.body);
-});
-
-// app.post("/api/recipes/:id", (req, res) => {
+// app.post("/api/users", (req, res) => {
 //   res.send(req.body);
 // });
 

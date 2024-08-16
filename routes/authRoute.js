@@ -7,7 +7,7 @@ import {
 
 const authRouter = Router();
 
-authRouter.post("/newuser", registerUser); // Register a new user
+authRouter.post("/user", registerUser); // Register a new user
 
 authRouter.post("/login", loginUser);
 

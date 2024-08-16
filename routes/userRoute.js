@@ -13,6 +13,6 @@ userRouter.get("/users", getUsers);
 
 userRouter.get("/users/:userId", getUserById);
 
-userRouter.get("/users/token", getUserByToken);
+userRouter.post("/users/token", getUserByToken);
 
 export default userRouter;
