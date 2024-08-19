@@ -3,8 +3,10 @@ import {
   getRecipes,
   // getAllRecipes,
   createRecipe,
+  updateRecipe,
   getRecipeById,
   getRecipeByTitle,
+  deleteRecipes,
 } from "../controller/recipeController.js";
 import Recipe from "../models/recipeModel.js";
 
@@ -14,7 +16,7 @@ recipeRouter.get("/recipes", getRecipes);
 
 // recipeRouter.get("/recipes", getAllRecipes);
 
-recipeRouter.get("/recipes/:id", getRecipeById);
+recipeRouter.get("/recipes/:recipeId", getRecipeById);
 
 recipeRouter.get("/recipe/title/:title", async (req, res) => {
   const { title } = req.params;
@@ -25,5 +27,9 @@ recipeRouter.get("/recipe/title/:title", async (req, res) => {
 });
 
 recipeRouter.post("/recipes", createRecipe);
+
+recipeRouter.put("/recipes/:recipeId", updateRecipe);
+
+recipeRouter.delete("/recipes/:recipeId", deleteRecipes);
 
 export default recipeRouter;

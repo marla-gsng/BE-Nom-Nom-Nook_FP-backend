@@ -28,9 +28,9 @@ const getRecipes = async (req, res) => {
 // };
 
 const getRecipeById = async (req, res) => {
-  const { id } = req.params;
+  const { recipeId } = req.params;
   try {
-    const recipe = await Recipe.findById(id).populate(
+    const recipe = await Recipe.findById(recipeId).populate(
       "ingredients instructions"
     );
     return res.status(200).json(recipe);
@@ -51,13 +51,6 @@ const getRecipeByTitle = async (req, res) => {
   }
 };
 
-// const { title } = req.params;
-// // const searchByTitle = await Movie.findOne({ title: title })
-// const searchByTitle = await Movie.findOne({
-//   title: { $regex: new RegExp(title, "i") },
-// }); // case insensitive
-// return res.json(searchByTitle);
-
 const createRecipe = async (req, res) => {
   const recipe = req.body;
   const newRecipe = new Recipe(recipe);
@@ -69,10 +62,39 @@ const createRecipe = async (req, res) => {
   }
 };
 
+const updateRecipe = async (req, res) => {
+  const { recipeId } = req.params;
+  const recipe = req.body;
+  console.log(recipe);
+  try {
+    const updatedRecipe = await Recipe.findByIdAndUpdate(recipeId, recipe, {
+      new: true,
+    });
+    return res.status(200).json(updatedRecipe);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+const deleteRecipes = async (req, res) => {
+  const { recipeId } = req.params;
+  console.log(recipeId);
+  try {
+    const recipe = await Recipe.findByIdAndDelete(recipeId);
+    if (!recipe) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
 export {
   getRecipes,
   // getAllRecipes,
   createRecipe,
+  updateRecipe,
   getRecipeById,
   getRecipeByTitle,
+  deleteRecipes,
 };

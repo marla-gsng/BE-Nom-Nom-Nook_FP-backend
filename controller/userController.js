@@ -36,6 +36,7 @@ const getUserById = async (req, res) => {
 
 const getUserByToken = async (req, res) => {
   const { token } = req.body;
+  console.log(token);
   try {
     const userByToken = await User.findOne({ token }).select(
       "-password -isAdmin"
@@ -50,4 +51,50 @@ const getUserByToken = async (req, res) => {
   }
 };
 
-export { getUsers, getUserById, getUserByToken };
+const deleteUser = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findByIdAndDelete(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+const updateUserFavorites = async (req, res) => {
+  const { userId } = req.params;
+  const { favorites } = req.body;
+  try {
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { favorites },
+      { new: true }
+    );
+    return res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+const getUserFavorites = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await User.findById(userId).populate("favorites");
+    console.log("hello", user);
+    return res.status(200).json(user.favorites);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+export {
+  getUsers,
+  getUserById,
+  getUserByToken,
+  deleteUser,
+  updateUserFavorites,
+  getUserFavorites,
+};

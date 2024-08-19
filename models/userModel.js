@@ -21,10 +21,18 @@ const userSchema = new mongoose.Schema({
   //   default: false,
   // },
 
-  // token: {
-  //   type: String,
-  //   required: false,
-  // },
+  token: {
+    type: String,
+    required: false,
+  },
+
+  favorites: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Recipe",
+      default: [],
+    },
+  ],
 
   // saved_recipes: {
   //   type: Array,
