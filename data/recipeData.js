@@ -189,6 +189,46 @@ const recipeData = [
     servings: 24,
     tags: ["dessert", "cookies", "chocolate"],
   },
+
+  {
+    id: 6,
+    title: "Garlic Fried Rice (Sinangag)",
+    description:
+      "A classic Filipino breakfast staple made with day-old rice, garlic, and seasonings. Enjoy it with your favorite breakfast meats and eggs!",
+    ingredients: [
+      {
+        name: "Cooked rice",
+        quantity: 500,
+        unit: "g",
+        notes: "preferably day-old",
+      },
+      { name: "Garlic", quantity: 5, unit: "cloves", notes: "minced" },
+      { name: "Cooking oil", quantity: 2, unit: "tbsp" },
+      { name: "Salt", quantity: 1, unit: "tsp", notes: "to taste" },
+      {
+        name: "Green onions",
+        quantity: 2,
+        unit: "tbsp",
+        notes: "chopped, optional",
+      },
+    ],
+    instructions: [
+      {
+        step: "Heat oil in a pan over medium heat and sauté the minced garlic until golden brown.",
+      },
+      {
+        step: "Add the cooked rice, breaking up any clumps, and stir-fry for 5-7 minutes.",
+      },
+      { step: "Season with salt to taste and mix well." },
+      { step: "Optional: Garnish with chopped green onions before serving." },
+    ],
+    category: "Side Dish",
+    prepTime: "5 minutes",
+    cookTime: "10 minutes",
+    totalTime: "15 minutes",
+    servings: 4,
+    tags: ["quick", "easy", "Filipino"],
+  },
 ];
 
 export default recipeData;
